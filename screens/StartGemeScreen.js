@@ -26,7 +26,6 @@ const StartGameScreen = props => {
     const resetInputHandler = () => {
         setEnteredValue('');
         setConfirmed(false);
-        Keyboard.dismiss();
     }
 
     const confirmInputHandler = () => {
@@ -38,6 +37,7 @@ const StartGameScreen = props => {
         setConfirmed(true);
         setSelectedNumber(chosenNumber)
         setEnteredValue('');
+        Keyboard.dismiss();
     }
     let confirmedOutput;
 
@@ -46,7 +46,7 @@ const StartGameScreen = props => {
             <Card style={styles.summaryContainer}>
                 <Text>You selected {selectedNumber}</Text>
                 <NumberContainer>{selectedNumber}</NumberContainer>
-                <Button title='Start Game' onPress={() => props.onStartGame={selectedNumber}} />
+                <Button title='Start Game' onPress={() => props.onStartGame(selectedNumber)} />
             </Card>
         )
     }
