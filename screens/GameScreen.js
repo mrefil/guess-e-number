@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import {
     View, 
     Text, 
@@ -22,15 +22,24 @@ const generateRandomBetween = (min, max, exclude) => {
 
 const GameScreen = props => {
     const [currentGuess, setCurrentGuess] = useState(
-        generateRandomBetween(1, 100, props.useChoice)
+        generateRandomBetween(1, 100, props.userChoice)
     );
+
+    const [rounds, setRounds] = useState(0);
     const currentLow = useRef(1);
     const currentHigh = useRef(100);
+    const {userChoice, onGameOver} = props;
+    
+    useEffect(() => {
+        if (currentGuess === userChoice) {
+            onGameOver(rounds);
+        }
+    }, [currentGuess, userChoice, onGameOver]);
 
     const nextGuessHandler = direction => {
         if(
-            (direction === 'lower' && currentGuess < props.useChoice) ||
-            (direction === 'greater' && currentGuess > props.useChoice)) {
+            (direction === 'lower' && currentGuess < props.userChoice) ||
+            (direction === 'greater' && currentGuess > props.userChoice)) {
             Alert.alert('Dont lie!', 'You know that this is wrong...' [
                 {text: 'sorry!', style: 'cancel'}
             ]);
@@ -43,6 +52,7 @@ const GameScreen = props => {
         }
         const nextnumber = generateRandomBetween(currentLow.current, currentHigh.current, currentGuess)
         setCurrentGuess(nextnumber);
+        setRounds(curRounds => curRounds + 1);
     }
 
     return (

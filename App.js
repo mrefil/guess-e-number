@@ -3,18 +3,29 @@ import { StyleSheet, View } from 'react-native';
 import Header from './components/Header';
 import StartGameScreen from './screens/StartGemeScreen';
 import GameScreen from './screens/GameScreen';
+import GameOverScreen from './screens/GameOverScreen';
 
 export default function App() {
   const [usernumber, setUserNumber] = useState();
+  const [guessRounds, setGuessRounds] = useState(0);
 
   const startGameHandler = (selectedNumber) => {
     setUserNumber(selectedNumber);
+    setGuessRounds(0);
   }
+
+  const gameOverHandler = numOfRounds => {
+    setGuessRounds(numOfRounds);
+  }
+
   let content = <StartGameScreen onStartGame={startGameHandler} />;
 
-  if(usernumber) {
-    content = <GameScreen userChoice={usernumber} />;
+  if(usernumber && guessRounds <= 0) {
+    content = <GameScreen userChoice={usernumber} onGameOver={gameOverHandler} />;
+  } else if(guessRounds > 0) {
+    content = <GameOverScreen />;
   }
+  
   return (
     <View style={styles.screen}>
       <Header title="Guess a number" />
