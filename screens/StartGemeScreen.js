@@ -1,5 +1,12 @@
 import React, {useState} from "react";
-import { View, Text, StyleSheet, TextInput, Button, Keyboard, TouchableWithoutFeedbackBase } from "react-native";
+import {
+    View,
+    Text,
+    StyleSheet,
+    Button,
+    Keyboard,
+    TouchableWithoutFeedback } from "react-native";
+
 import Card from "../components/Card";
 import Colors from "../constants/colors";
 import Input from "../components/Input";
@@ -30,11 +37,11 @@ const StartGameScreen = props => {
     let confirmedOutput;
 
     if(confirmed) {
-        confirmedOutput = <Text>Chosen Number: {selectedNumber</Text>
+        confirmedOutput = <Text>Chosen Number: {selectedNumber}</Text>
     }
 
-    return(
-        <TouchableWithoutFeedbackBase onPress={() => {
+    return (
+        <TouchableWithoutFeedback onPress={() => {
             Keyboard.dismiss();
         }}>
         <View style={styles.screen}>
@@ -68,7 +75,7 @@ const StartGameScreen = props => {
             </Card>
             {confirmedOutput}
         </View>
-        </TouchableWithoutFeedbackBase>
+        </TouchableWithoutFeedback>
     )
 };
 
