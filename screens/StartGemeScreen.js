@@ -10,6 +10,10 @@ const StartGameScreen = props => {
     const numberInputHandler = inputText => {
         setEnteredValue(inputText.replace(/[^0-9]/g, '')); // replace number
     }
+
+    const resetInputHandler = () => {
+        setEnteredValue('');
+    }
     return(
         <TouchableWithoutFeedbackBase onPress={() => {
             Keyboard.dismiss();
@@ -30,10 +34,16 @@ const StartGameScreen = props => {
             />
             <View style={styles.buttonContainer}>
                 <View style={styles.button}>
-                <Button title="Reset" onPress={() => {}} color={Colors.accent} />
+                <Button 
+                    title="Reset" 
+                    onPress={resetInputHandler} 
+                    color={Colors.accent} />
                 </View>
                 <View style={styles.button}>
-                <Button title="Confirm" onPress={() => {}} color={Colors.primary} />
+                <Button 
+                    title="Confirm" 
+                    onPress={() => {}} 
+                    color={Colors.primary} />
                 </View>
             </View>
             </Card>
