@@ -7,7 +7,9 @@ const GameOverScreen = props => {
     return (
         <View style={styles.screen}>
             <TitleText>The Game is Over!</TitleText>
-            <Image source={require('../assets/success.png')} />
+            <View style={styles.imageContainer}>
+                <Image source={require('../assets/success.png')} styles={style.image} />
+            </View>
             <BodyText>Number of rounds: {props.roundsNumber}</BodyText>
             <BodyText>Number was: {props.userNumber}</BodyText>
             <Button title="New Game" onPress={props.onRestart} />
@@ -20,6 +22,20 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    imageContainer: {
+        width: 300,
+        height: 300,
+        borderRadius: 200,
+        borderWidth: 3,
+        borderColor: 'black',
+        overflow: 'hidden',
+        marginVertical: 20
+
+    },
+    image: {
+        width: '100%',
+        height: '100%'
     }
 })
 
